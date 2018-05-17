@@ -1,0 +1,24 @@
+<div>
+
+    <label for="language">Taal</label>
+    <select id="language" value="{{question.language}}">
+        <option>nl</option>
+        <option>fr</option>
+    </select>
+
+    <label for="year">Jaar</label>
+    <input id="year" type="text" value="{{question.year}}">
+
+    <label for="text">Vraag</label>
+    <textarea id="text" value="{{question.text}}"></textarea>
+
+    <label for="answer1">Antwoord 1</label>
+    <textarea id="answer1" value="{{question.answers[0].text}}"></textarea>
+
+    <label for="answer2">Antwoord 2</label>
+    <textarea id="answer2" value="{{question.answers[1].text}}"></textarea>
+
+    <label for="answer3">Antwoord 3</label>
+    <textarea id="answer3" value="{{question.answers[2].text}}"></textarea>
+
+</div>
