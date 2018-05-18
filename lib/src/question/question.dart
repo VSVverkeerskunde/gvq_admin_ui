@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 import 'package:gvq_admin_ui/src/question/answer.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 
@@ -19,35 +21,37 @@ class Question {
       this._answers,
       this._feedback);
 
-  Question.createEmpty() {
-    this._answers = new List<Answer>();
+  String get language => _language;
+  int get year => _year;
+  Category get category => _category;
+  String get text => _text;
+  Uri get pictureUri => _pictureUri;
+  List<Answer> get answers => _answers;
+  String get feedback => _feedback;
 
-    for (int index = 0; index < 3; index++) {
-      this._answers.add(new Answer.createEmpty());
-    }
+  Map toJson() {
+    var uuid = new Uuid();
+
+    List<Map> answersMap = new List<Map>();
+    this._answers.forEach((Answer answer) {
+      answersMap.add(answer.toJson());
+    });
+
+    Map map = new Map();
+    // TODO: id needs to be created in the backend.
+    map['id'] = uuid.v4();
+    map['language'] = this._language;
+    map['year'] = this._year;
+    map['category'] = this._category;
+    map['text'] = this._text;
+    map['pictureUri'] = this._pictureUri.toString();
+    map['answers'] = answersMap;
+    map['feedback'] = this._feedback;
+    return map;
   }
 
-  set language(String value) => _language = value;
-  String get language => _language;
-
-  set year(int value) => _year = value;
-  int get year => _year;
-
-  set yearAsString(String value) => _year = int.parse(value);
-  String get yearAsString => _year.toString();
-
-  set category(Category value) => _category = value;
-  Category get category => _category;
-
-  set text(String value) => _text = value;
-  String get text => _text;
-
-  set pictureUri(Uri value) => _pictureUri = value;
-  Uri get pictureUri => _pictureUri;
-
-  set answers(List<Answer> value) => _answers = value;
-  List<Answer> get answers => _answers;
-
-  set feedback(String value) => _feedback = value;
-  String get feedback => _feedback;
+  @override
+  String toString() {
+    return 'Question{_language: $_language, _year: $_year, _category: $_category, _text: $_text, _pictureUri: $_pictureUri, _answers: $_answers, _feedback: $_feedback}';
+  }
 }

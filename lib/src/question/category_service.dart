@@ -15,10 +15,14 @@ class CategoryService {
     }
 
     List<Category> categories = new List<Category>();
-    json.decode(request.responseText).forEach((category) {
-      categories.add(new Category.fromMap(category));
+    json.decode(request.responseText).forEach((categoryMap) {
+      categories.add(this.categoryFromMap(categoryMap));
     });
 
     return categories;
+  }
+
+  Category categoryFromMap(categoryMap) {
+    return new Category(categoryMap['id'], categoryMap['name']);
   }
 }

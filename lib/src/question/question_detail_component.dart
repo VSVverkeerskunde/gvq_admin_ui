@@ -1,9 +1,11 @@
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
+import 'package:gvq_admin_ui/src/question/answer.dart';
 
 import 'package:gvq_admin_ui/src/question/category.dart';
 import 'package:gvq_admin_ui/src/question/category_service.dart';
 import 'package:gvq_admin_ui/src/question/question.dart';
+import 'package:gvq_admin_ui/src/question/questionService.dart';
 
 @Component(
     selector: 'question-detail',
@@ -11,27 +13,64 @@ import 'package:gvq_admin_ui/src/question/question.dart';
     directives: [coreDirectives, formDirectives])
 
 class QuestionDetailComponent implements OnInit {
-
-  Question _question;
   List<Category> _categories;
 
-  Question get question => _question;
+  String language;
+  String year;
+  String categoryId;
+  String text;
+  List<String> answers = ['', '', ''];
+  int correctAnswer;
+  String feedback;
+
   List<Category> get categories => _categories;
 
   @override
   void ngOnInit() async {
-    this._question = new Question.createEmpty();
-
-    this._question.language = 'fr';
-    this._question.year = 2020;
-
-    this._categories = new List<Category>();
-
     CategoryService categoryService = new CategoryService();
     this._categories = await categoryService.getAll();
   }
 
   void onSubmit() {
+    Question question = this._createQuestion();
+
     print('Submit pressed.');
+    print(question.toString());
+
+    QuestionService questionService = new QuestionService();
+    questionService.save(question);
+  }
+
+  List<Answer> _createAnswers() {
+    List<Answer> createdAnswers = new List<Answer>();
+    for (int index = 0; index < 3; index++) {
+      createdAnswers.add(
+          new Answer(this.answers[index], this.correctAnswer == index));
+    }
+    return createdAnswers;
+  }
+
+  Question _createQuestion() {
+    return new Question(
+        this.language,
+        int.parse(this.year),
+        this._findSelectedCategory(this.categoryId),
+        this.text,
+        new Uri.dataFromString('http://www.google.be'),
+        this._createAnswers(),
+        this.feedback);
+  }
+
+  Category _findSelectedCategory(String categoryId) {
+    Category foundCategory = null;
+
+    this._categories.forEach((Category category) {
+      if (categoryId == category.id) {
+        foundCategory = category;
+        print(foundCategory);
+      }
+    });
+
+    return foundCategory;
   }
 }

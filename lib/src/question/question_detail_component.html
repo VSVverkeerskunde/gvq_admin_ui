@@ -8,7 +8,7 @@
                     <label for="language">Taal</label>
                     <select id="language"
                             class="form-control"
-                            [(ngModel)]="question.language">
+                            [(ngModel)]="language">
                         <option>nl</option>
                         <option>fr</option>
                     </select>
@@ -19,14 +19,16 @@
                     <input id="year"
                            type="text"
                            class="form-control"
-                           [(ngModel)]="question.yearAsString">
+                           [(ngModel)]="year">
                 </div>
 
                 <div class="col-sm-6">
                     <label for="category">Thema</label>
                     <select id="category"
-                            class="form-control">
-                        <option *ngFor="let category of categories">{{category.name}}</option>
+                            class="form-control"
+                            [(ngModel)]="categoryId">
+                        <option *ngFor="let category of categories"
+                                value="{{category.id}}">{{category.name}}</option>
                     </select>
                 </div>
             </div>
@@ -36,23 +38,24 @@
             <label for="text">Vraag</label>
             <textarea id="text"
                       class="form-control"
-                      [(ngModel)]="question.text"></textarea>
+                      [(ngModel)]="text"></textarea>
         </div>
 
+        <!-- TODO: Use *ngFor -->
         <div class="form-group">
             <div class="form-check">
                 <input id="correct1"
                        name="correct"
                        type="radio"
                        class="form-check-input"
-                       value="answer1">
+                       (click)="correctAnswer = 0">
                 <label class="form-check-label" for="correct1">
                     Antwoord 1 is correct
                 </label>
             </div>
             <textarea id="answer1"
                       class="form-control"
-                      [(ngModel)]="question.answers[0].text"></textarea>
+                      [(ngModel)]="answers[0]"></textarea>
         </div>
 
         <div class="form-group">
@@ -61,14 +64,14 @@
                        name="correct"
                        type="radio"
                        class="form-check-input"
-                       value="answer2">
+                       (click)="correctAnswer = 1">
                 <label class="form-check-label" for="correct2">
                     Antwoord 2 is correct
                 </label>
             </div>
             <textarea id="answer2"
                       class="form-control"
-                      [(ngModel)]="question.answers[1].text"></textarea>
+                      [(ngModel)]="answers[1]"></textarea>
         </div>
 
         <div class="form-group">
@@ -77,21 +80,21 @@
                        name="correct"
                        type="radio"
                        class="form-check-input"
-                       value="answer3">
+                       (click)="correctAnswer = 2">
                 <label class="form-check-label" for="correct3">
                     Antwoord 3 is correct
                 </label>
             </div>
             <textarea id="answer3"
                       class="form-control"
-                      [(ngModel)]="question.answers[2].text"></textarea>
+                      [(ngModel)]="answers[2]"></textarea>
         </div>
 
         <div class="form-group">
             <label for="feedback">Feedback</label>
             <textarea id="feedback"
                       class="form-control"
-                      [(ngModel)]="question.feedback"></textarea>
+                      [(ngModel)]="feedback"></textarea>
         </div>
 
         <div class="form-group">
