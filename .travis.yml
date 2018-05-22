@@ -1,0 +1,9 @@
+language: dart
+dart:
+- dev
+
+# pub get is run by default because pubspec.yaml is present
+# pub run test is run by default on the test folder
+
+dart_task:
+- dartanalyzer: lib # run the dart analyzer on the lib folder
