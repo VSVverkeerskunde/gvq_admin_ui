@@ -5,7 +5,7 @@ dart:
 sudo: required
 
 script:
-- pub run test -p "chrome,vm" test/test_all.dart
+- pub run test -p "chrome" test/test_all.dart
 - dartanalyzer lib
 
 after_success:
