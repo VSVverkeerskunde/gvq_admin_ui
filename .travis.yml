@@ -4,10 +4,9 @@ dart:
 
 sudo: required
 
-dart_task:
-- test: --platform vm
-- test: --platform chrome
-- dartanalyzer: lib # run the dart analyzer on the lib folder
+scripts:
+- pub run test -p "chrome,vm" test/test_all.dart
+- dartanalyzer lib
 
 after_success:
 - pub global activate dart_coveralls
