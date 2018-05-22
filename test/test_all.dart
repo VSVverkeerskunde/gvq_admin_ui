@@ -1,5 +1,5 @@
-import 'question/category_test.dart' as category_test;
+import 'question/question_test_all.dart' as question_test_all;
 
 void main() {
-    category_test.main();
+    question_test_all.main();
 }

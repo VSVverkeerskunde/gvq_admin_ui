@@ -5,7 +5,7 @@ import 'package:gvq_admin_ui/src/question/answer.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 import 'package:gvq_admin_ui/src/question/category_service.dart';
 import 'package:gvq_admin_ui/src/question/question.dart';
-import 'package:gvq_admin_ui/src/question/questionService.dart';
+import 'package:gvq_admin_ui/src/question/question_service.dart';
 
 @Component(
     selector: 'question-detail',
