@@ -4,6 +4,7 @@ dart:
 
 dart_task:
 - test: --platform vm
+- test: --platform chrome
 - dartanalyzer: lib # run the dart analyzer on the lib folder
 
 after_success:

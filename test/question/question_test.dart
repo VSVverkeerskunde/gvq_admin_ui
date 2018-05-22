@@ -1,3 +1,5 @@
+@TestOn('vm')
+
 import 'package:gvq_admin_ui/src/question/answer.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 import "package:test/test.dart";
