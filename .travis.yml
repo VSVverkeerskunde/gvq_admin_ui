@@ -2,6 +2,8 @@ language: dart
 dart:
 - dev
 
+sudo: required
+
 dart_task:
 - test: --platform vm
 - test: --platform chrome
