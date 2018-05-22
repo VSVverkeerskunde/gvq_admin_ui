@@ -1,6 +1,11 @@
 language: dart
 dart:
 - dev
+
 dart_task:
 - test: --platform vm
 - dartanalyzer: lib # run the dart analyzer on the lib folder
+
+after_success:
+- pub global activate dart_coveralls
+- pub global run dart_coveralls report --token $COVERALLS_TOKEN test/test_all.dart
