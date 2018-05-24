@@ -33,10 +33,6 @@ class QuestionDetailComponent implements OnInit {
 
   void onSubmit() {
     Question question = this._createQuestion();
-
-    print('Submit pressed.');
-    print(question.toString());
-
     QuestionService questionService = new QuestionService();
     questionService.save(question);
   }
