@@ -1,5 +1,3 @@
-import 'package:uuid/uuid.dart';
-
 class Answer {
   String _text;
   bool _correct;
@@ -10,11 +8,7 @@ class Answer {
   bool get correct => _correct;
 
   Map toJson() {
-    var uuid = new Uuid();
-
     Map map = new Map();
-    // TODO: id needs to be created in the backend.
-    map['id'] = uuid.v4();
     map['text'] = this._text;
     map['correct'] = this._correct;
     return map;

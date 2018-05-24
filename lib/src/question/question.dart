@@ -1,5 +1,3 @@
-import 'package:uuid/uuid.dart';
-
 import 'package:gvq_admin_ui/src/question/answer.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 
@@ -30,16 +28,12 @@ class Question {
   String get feedback => _feedback;
 
   Map toJson() {
-    var uuid = new Uuid();
-
     List<Map> answersMap = new List<Map>();
     this._answers.forEach((Answer answer) {
       answersMap.add(answer.toJson());
     });
 
     Map map = new Map();
-    // TODO: id needs to be created in the backend.
-    map['id'] = uuid.v4();
     map['language'] = this._language;
     map['year'] = this._year;
     map['category'] = this._category;
