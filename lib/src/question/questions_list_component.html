@@ -1,16 +1,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th>#</th>
+            <th (click)="onSortId()">#</th>
             <th>Jaar</th>
             <th>Taal</th>
-            <th>Thema</th>
+            <th (click)="onSortCategory()">Thema</th>
             <th>Foto</th>
             <th>Vraag</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let question of questions">
+        <tr *ngFor="let question of filteredQuestions">
             <td>
                 {{question.id}}
             </td>
