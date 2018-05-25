@@ -41,13 +41,17 @@ class QuestionDetailComponent implements OnInit {
     List<Answer> createdAnswers = new List<Answer>();
     for (int index = 0; index < 3; index++) {
       createdAnswers.add(
-          new Answer(this.answers[index], this.correctAnswer == index));
+          new Answer(
+              null,
+              this.answers[index],
+              this.correctAnswer == index));
     }
     return createdAnswers;
   }
 
   Question _createQuestion() {
     return new Question(
+        null,
         this.language,
         int.parse(this.year),
         this._findSelectedCategory(this.categoryId),

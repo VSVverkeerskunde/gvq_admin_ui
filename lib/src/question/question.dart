@@ -2,6 +2,7 @@ import 'package:gvq_admin_ui/src/question/answer.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 
 class Question {
+  String _id;
   String _language;
   int _year;
   Category _category;
@@ -11,6 +12,7 @@ class Question {
   String _feedback;
 
   Question(
+      this._id,
       this._language,
       this._year,
       this._category,
@@ -19,6 +21,7 @@ class Question {
       this._answers,
       this._feedback);
 
+  String get id => _id;
   String get language => _language;
   int get year => _year;
   Category get category => _category;
@@ -34,6 +37,9 @@ class Question {
     });
 
     Map map = new Map();
+    if (this._id != null) {
+      map['id'] = this._id;
+    }
     map['language'] = this._language;
     map['year'] = this._year;
     map['category'] = this._category;

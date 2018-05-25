@@ -8,7 +8,7 @@ void main() {
   Answer answer;
 
   setUp(() {
-    answer = new Answer('Oui, mais uniquement en agglomération.', true);
+    answer = new Answer(null, 'Oui, mais uniquement en agglomération.', true);
   });
 
   test('stores text', () {

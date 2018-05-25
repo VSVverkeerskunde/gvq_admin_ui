@@ -1,0 +1,40 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Jaar</th>
+            <th>Taal</th>
+            <th>Thema</th>
+            <th>Foto</th>
+            <th>Vraag</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let question of questions">
+            <td>
+                {{question.id}}
+            </td>
+            <td>
+                {{question.year}}
+            </td>
+            <td>
+                {{question.language}}
+            </td>
+            <td>
+                {{question.category.name}}
+            </td>
+            <td>
+                TODO
+            </td>
+            <td>
+                <strong>{{question.text}}</strong>
+                <ul>
+                    <li *ngFor="let answer of question.answers" [ngClass]="answer.correct ? 'text-success' : null">
+                        {{answer.text}}
+                    </li>
+                </ul>
+                <em>{{question.feedback}}</em>
+            </td>
+        </tr>
+    </tbody>
+</table>

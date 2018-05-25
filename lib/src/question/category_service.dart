@@ -17,13 +17,13 @@ class CategoryService {
 
     List<Category> categories = new List<Category>();
     json.decode(request.responseText).forEach((categoryMap) {
-      categories.add(this.categoryFromMap(categoryMap));
+      categories.add(this._categoryFromMap(categoryMap));
     });
 
     return categories;
   }
 
-  Category categoryFromMap(categoryMap) {
+  Category _categoryFromMap(categoryMap) {
     return new Category(categoryMap['id'], categoryMap['name']);
   }
 }
