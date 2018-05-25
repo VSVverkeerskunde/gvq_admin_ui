@@ -63,7 +63,6 @@ class QuestionDetailComponent implements OnInit {
     this._categories.forEach((Category category) {
       if (categoryId == category.id) {
         foundCategory = category;
-        print(foundCategory);
       }
     });
 

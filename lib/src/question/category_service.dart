@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:convert';
 
+import 'package:gvq_admin_ui/src/config.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 
 class CategoryService {
-  String _url = 'http://localhost:8000/categories';
+  String _url = Config.apiUrl + 'categories';
 
   Future<List<Category>> getAll() async {
     HttpRequest request = await HttpRequest.request(this._url, method: 'GET');
