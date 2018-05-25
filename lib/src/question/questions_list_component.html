@@ -8,6 +8,24 @@
             <th>Foto</th>
             <th>Vraag</th>
         </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>
+                <select id="category"
+                        class="form-control"
+                        [ngModel]="selectedCategoryId"
+                        (ngModelChange)="onFilterCategory($event)">
+                    <option *ngFor="let category of categories"
+                            [value]="category.id">
+                        {{category.name}}
+                    </option>
+                </select>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
         <tr *ngFor="let question of filteredQuestions">
