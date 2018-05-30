@@ -12,6 +12,9 @@ import 'package:gvq_admin_ui/src/question/question_service.dart';
     directives: [coreDirectives, formDirectives])
 
 class QuestionsListComponent implements OnInit {
+  CategoryService _categoryService = new CategoryService();
+  QuestionService _questionService = new QuestionService();
+
   List<Category> _categories;
   String selectedCategoryId;
 
@@ -25,11 +28,9 @@ class QuestionsListComponent implements OnInit {
 
   @override
   void ngOnInit() async {
-    CategoryService categoryService = new CategoryService();
-    this._categories = await categoryService.getAll();
+    this._categories = await this._categoryService.getAll();
 
-    QuestionService questionService = new QuestionService();
-    this._questions = await questionService.getAll();
+    this._questions = await this._questionService.getAll();
 
     this._filteredQuestions = this._questions;
   }
@@ -54,5 +55,13 @@ class QuestionsListComponent implements OnInit {
     this._filteredQuestions = _questions.where((q) {
       return q.category.id == selectedCategoryId;
     }).toList();
+  }
+
+  void onDeleteQuestion(Question question) {
+    this._questionService.delete(question);
+    _questions.removeWhere((q) {
+      return q.id == question.id;
+    });
+    _filteredQuestions = _questions;
   }
 }

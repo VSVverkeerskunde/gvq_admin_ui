@@ -23,6 +23,19 @@ class QuestionService {
     request.send(questionAsJson);
   }
 
+  void delete(Question question) {
+    HttpRequest request = new HttpRequest();
+    request.open('DELETE', this._url + '/' + question.id, async: false);
+
+    request.onReadyStateChange.listen((_) {
+      if (request.readyState == HttpRequest.DONE && request.status == 200) {
+        print(request.responseText);
+      }
+    });
+
+    request.send();
+  }
+
   List<Question> getAll() {
     List<Question> questions = new List<Question>();
 
