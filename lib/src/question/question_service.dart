@@ -20,6 +20,7 @@ class QuestionService {
     });
 
     String questionAsJson = json.encode(question);
+    print(questionAsJson);
     request.send(questionAsJson);
   }
 

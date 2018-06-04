@@ -1,0 +1,121 @@
+<form (ngSubmit)="onSubmit()" #userForm="ngForm" novalidate
+      [ngClass]="userForm.form.valid ? 'form-valid' : 'form-invalid'">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="language">Taal</label>
+                <select id="language"
+                        class="form-control"
+                        [(ngModel)]="user.language">
+                    <option>nl</option>
+                    <option>fr</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email"
+               type="email"
+               class="form-control"
+               [(ngModel)]="user.email">
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="password">Paswoord</label>
+                <input id="password"
+                       type="password"
+                       class="form-control"
+                       required
+                       [(ngModel)]="user.password" #v_password="ngForm"
+                       pattern="(?=[^ ])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])(.{8,})(?<=\S)"
+                       ngControl="password">
+                <div *ngIf="v_password.dirty && !v_password.valid">
+                <span class="text-danger"
+                      [hidden]="!v_password.errors.containsKey('pattern')">
+                    Paswoord moet blabla</span><br/>
+                    <span class="text-danger"
+                          [hidden]="!v_password.errors.containsKey('required')">
+                    Paswoord moet blabla</span><br/>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="">
+                    <label for="password-confirmation">Paswoord bevestiging</label>
+                    <input id="password-confirmation"
+                           type="password"
+                           class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-6">
+                <label for="firstName">Voornaam</label>
+                <input id="firstName"
+                       type="text"
+                       class="form-control"
+                       required
+                       [(ngModel)]="user.firstName">
+            </div>
+
+            <div class="col-6">
+                <label for="lastName">Familienaam</label>
+                <input id="lastName"
+                       type="text"
+                       class="form-control"
+                       required
+                       [(ngModel)]="user.lastName">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-9">
+                <label for="name">Bedrijfsnaam</label>
+                <input id="name"
+                       type="text"
+                       class="form-control"
+                       [(ngModel)]="name">
+            </div>
+            <div class="col-sm-3">
+                <label for="numEmployees">Aantal werknemers</label>
+                <input id="numEmployees"
+                       type="number"
+                       class="form-control"
+                       [(ngModel)]="numEmployees">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="aliasNl">Alias NL</label>
+                <input id="aliasNl"
+                       type="text"
+                       class="form-control"
+                       [(ngModel)]="translatedAliases[0].alias">
+            </div>
+            <div class="col-sm-6">
+                <label for="aliasFr">Alias FR</label>
+                <input id="aliasFr"
+                       type="text"
+                       class="form-control"
+                       [(ngModel)]="translatedAliases[1].alias">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Bewaar</button>
+    </div>
+</form>
