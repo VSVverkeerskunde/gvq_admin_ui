@@ -10,9 +10,17 @@ import 'package:gvq_admin_ui/src/question/question_service.dart';
 @Component(
     selector: 'question-detail',
     templateUrl: 'question_detail_component.html',
-    directives: [coreDirectives, formDirectives])
+    directives: [coreDirectives, formDirectives],
+    providers: [
+      const ClassProvider(CategoryService),
+      const ClassProvider(QuestionService)])
 
 class QuestionDetailComponent implements OnInit {
+  final CategoryService _categoryService;
+  final QuestionService _questionService;
+
+  QuestionDetailComponent(this._categoryService, this._questionService);
+
   List<Category> _categories;
 
   String language;
@@ -27,14 +35,12 @@ class QuestionDetailComponent implements OnInit {
 
   @override
   void ngOnInit() async {
-    CategoryService categoryService = new CategoryService();
-    this._categories = await categoryService.getAll();
+    this._categories = await this._categoryService.getAll();
   }
 
   void onSubmit() {
     Question question = this._createQuestion();
-    QuestionService questionService = new QuestionService();
-    questionService.save(question);
+    this._questionService.save(question);
   }
 
   List<Answer> _createAnswers() {

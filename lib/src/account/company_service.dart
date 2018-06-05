@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:angular/angular.dart';
 import 'package:gvq_admin_ui/src/account/company.dart';
 import 'package:gvq_admin_ui/src/config.dart';
 
+@Injectable()
 class CompanyService {
   String _url = Config.apiUrl + 'account/register';
 

@@ -10,11 +10,17 @@ import 'package:gvq_admin_ui/src/question/question_service.dart';
 @Component(
     selector: 'questions-list',
     templateUrl: 'questions_list_component.html',
-    directives: [coreDirectives, formDirectives, QuestionDetailComponent])
+    directives: [coreDirectives, formDirectives, QuestionDetailComponent],
+    providers: [
+      const ClassProvider(CategoryService),
+      const ClassProvider(QuestionService)])
 
 class QuestionsListComponent implements OnInit {
-  CategoryService _categoryService = new CategoryService();
-  QuestionService _questionService = new QuestionService();
+
+  final CategoryService _categoryService;
+  final QuestionService _questionService;
+
+  QuestionsListComponent(this._categoryService, this._questionService);
 
   List<Category> _categories;
   String selectedCategoryId;

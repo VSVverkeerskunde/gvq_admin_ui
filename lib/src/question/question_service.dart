@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:angular/angular.dart';
 import 'package:gvq_admin_ui/src/config.dart';
 import 'package:gvq_admin_ui/src/question/answer.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 import 'package:gvq_admin_ui/src/question/question.dart';
 
+@Injectable()
 class QuestionService {
   String _url = Config.apiUrl + 'questions';
 

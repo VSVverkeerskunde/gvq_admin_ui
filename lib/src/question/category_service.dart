@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:convert';
 
+import 'package:angular/angular.dart';
 import 'package:gvq_admin_ui/src/config.dart';
 import 'package:gvq_admin_ui/src/question/category.dart';
 
+@Injectable()
 class CategoryService {
   String _url = Config.apiUrl + 'categories';
 
