@@ -1,3 +1,9 @@
-<questions-list></questions-list>
-<question-detail></question-detail>
-<company-register></company-register>
+<nav class="navbar navbar-default">
+    <ul class="nav">
+    <li class="nav-item"><a class="nav-link" [routerLink]="routes.account.path"
+           routerLinkActive="active-route">Register</a></li>
+    <li class="nav-item"><a class="nav-link" [routerLink]="routes.questions.path"
+           routerLinkActive="active-route">Questions</a></li>
+    </ul>
+</nav>
+<router-outlet [routes]="routes.all"></router-outlet>

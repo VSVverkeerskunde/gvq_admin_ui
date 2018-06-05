@@ -4,12 +4,13 @@ import 'package:gvq_admin_ui/src/question/category.dart';
 import 'package:gvq_admin_ui/src/question/category_service.dart';
 
 import 'package:gvq_admin_ui/src/question/question.dart';
+import 'package:gvq_admin_ui/src/question/question_detail_component.dart';
 import 'package:gvq_admin_ui/src/question/question_service.dart';
 
 @Component(
     selector: 'questions-list',
     templateUrl: 'questions_list_component.html',
-    directives: [coreDirectives, formDirectives])
+    directives: [coreDirectives, formDirectives, QuestionDetailComponent])
 
 class QuestionsListComponent implements OnInit {
   CategoryService _categoryService = new CategoryService();
